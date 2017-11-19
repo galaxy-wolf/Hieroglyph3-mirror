@@ -582,13 +582,14 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
-      <Command>if "$(Platform)" == "Win32" (
+      <Command>IF NOT EXIST "$(SolutionDir)\Applications\Bin\" MD "$(SolutionDir)\Applications\Bin\" if "$(Platform)" == "Win32" (
     echo "Hieroglyph3: Copying x86 version of D3DCompile*.dll to output bin folder."
-    copy “$(WindowsSdkDir)redist\d3d\x86\D3DCompile*.DLL” “$(SolutionDir)\Applications\Bin”
+    copy "$(WindowsSdkDir)redist\d3d\x86\D3DCompile*.DLL"  "$(SolutionDir)\Applications\Bin\"
 ) else (
     echo "Hieroglyph3: Copying x64 version of D3DCompile*.dll to output bin folder."
-    copy “$(WindowsSdkDir)redist\d3d\x64\D3DCompile*.DLL” “$(SolutionDir)\Applications\Bin”
-)</Command>
+    copy "$(WindowsSdkDir)redist\d3d\x64\D3DCompile*.DLL" "$(SolutionDir)\Applications\Bin\"
+)
+</Command>
     </PostBuildEvent>
     <Lib>
       <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\Lua-5.1.4\LuaLib\Bin\$(Platform)\$(Configuration)\</AdditionalLibraryDirectories>
