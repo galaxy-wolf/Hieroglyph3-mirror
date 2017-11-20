@@ -42,8 +42,8 @@ App::App()
 bool App::ConfigureEngineComponents()
 {
 	// The application currently supplies the 
-	int width = 640;
-	int height = 320;
+	int width = 1280;
+	int height = 720;
 	bool windowed = true;
 
 	// Set the render window parameters and initialize the window
@@ -170,12 +170,12 @@ void App::Initialize()
 
 
 	m_pCamera = new Camera();
-	m_pCamera->Spatial().SetRotation(Vector3f(0.807f, 0.0f, 0.0f));
+	m_pCamera->Spatial().SetRotation(Vector3f(0.607f, 0.0f, 0.0f));
 	m_pCamera->Spatial().SetTranslation(Vector3f(0.0f, 2.5f, -5.0f));
 	m_pRenderView = new ViewPerspective(*m_pRenderer11, m_RenderTarget, m_DepthTarget);
 	m_pRenderView->SetColorClearValue(Vector4f(0.6f, 0.6f, 0.6f, 0.6f));
 	m_pCamera->SetCameraView(m_pRenderView);
-	m_pCamera->SetProjectionParams(0.1f, 100.0f, 640.0f/320.0f, static_cast<float>(GLYPH_PI) / 2.0f);
+	m_pCamera->SetProjectionParams(0.1f, 100.0f, 1280.0f/720.0f, static_cast<float>(GLYPH_PI) / 2.0f);
 
 	// Create the scene and add the entities to it.  Then add the camera to the
 	// scene so that it will be updated via the scene interface instead of 
