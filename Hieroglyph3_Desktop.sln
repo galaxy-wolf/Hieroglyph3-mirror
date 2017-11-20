@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Hieroglyph3_Desktop", "Source\Hieroglyph3_Desktop.vcxproj", "{0F6D257E-70D5-46C5-8A12-7BDF93C35E81}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -124,6 +124,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PhysicalRenderingSandbox_De
 	ProjectSection(ProjectDependencies) = postProject
 		{0F6D257E-70D5-46C5-8A12-7BDF93C35E81} = {0F6D257E-70D5-46C5-8A12-7BDF93C35E81}
 	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Test", "Applications\Test\Test.vcxproj", "{26CBFF43-0C2D-4880-A643-5D2B516A78EA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -333,6 +335,14 @@ Global
 		{4AF16E17-B0B7-4FB6-A86F-F809FF72E5C0}.Release|Win32.Build.0 = Release|Win32
 		{4AF16E17-B0B7-4FB6-A86F-F809FF72E5C0}.Release|x64.ActiveCfg = Release|x64
 		{4AF16E17-B0B7-4FB6-A86F-F809FF72E5C0}.Release|x64.Build.0 = Release|x64
+		{26CBFF43-0C2D-4880-A643-5D2B516A78EA}.Debug|Win32.ActiveCfg = Debug|Win32
+		{26CBFF43-0C2D-4880-A643-5D2B516A78EA}.Debug|Win32.Build.0 = Debug|Win32
+		{26CBFF43-0C2D-4880-A643-5D2B516A78EA}.Debug|x64.ActiveCfg = Debug|x64
+		{26CBFF43-0C2D-4880-A643-5D2B516A78EA}.Debug|x64.Build.0 = Debug|x64
+		{26CBFF43-0C2D-4880-A643-5D2B516A78EA}.Release|Win32.ActiveCfg = Release|Win32
+		{26CBFF43-0C2D-4880-A643-5D2B516A78EA}.Release|Win32.Build.0 = Release|Win32
+		{26CBFF43-0C2D-4880-A643-5D2B516A78EA}.Release|x64.ActiveCfg = Release|x64
+		{26CBFF43-0C2D-4880-A643-5D2B516A78EA}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
