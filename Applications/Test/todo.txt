@@ -1,0 +1,7 @@
+1, shadowMap：
+	a， 生成shadowMap
+		<1>   Depth tex ?? 在哪里写？
+	b， 使用shadowMap， PhongShading 中使用？
+		<2> Depth tex
+
+3, 参考Defered shading <LightPrepass>

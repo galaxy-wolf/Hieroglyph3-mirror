@@ -275,6 +275,6 @@ bool App::HandleEvent( EventPtr pEvent )
 //--------------------------------------------------------------------------------
 std::wstring App::GetName( )
 {
-	return( std::wstring( L"BasicScenes" ) );
+	return( std::wstring( L"TestScene" ) );
 }
 //--------------------------------------------------------------------------------
