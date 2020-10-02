@@ -30,3 +30,8 @@ Thumbs.db
 *.opensdf
 *.blend1
 *.xcf
+Applications/*/Win32/
+Applications/Bin/
+Library/
+Dependencies/
+Source/Bin/
