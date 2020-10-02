@@ -145,9 +145,10 @@ void App::Initialize()
 	// Load and initialize the geometry to be rendered.
 
 	m_pGeometry = GeometryLoaderDX11::loadMS3DFile2( std::wstring( L"Sample_Scene.ms3d" ) );
+    bool success = m_pGeometry->ComputeTangentFrame();
+    _ASSERT( success );
 	m_pGeometry->LoadToBuffers();
 	m_pGeometry->SetPrimitiveType(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST );
-
 
 	// Create the parameters for use with this effect
 
@@ -159,19 +160,45 @@ void App::Initialize()
 	m_pLightPosition = m_pRenderer11->m_pParamMgr->GetVectorParameterRef( std::wstring( L"LightPositionWS" ) );
 	m_pLightPosition->InitializeParameterData( &m_LightPosition );
 
+	m_ViewerPosition = Vector3f(0.0f, 2.5f, -5.0f);
+	m_pViewerPosition= m_pRenderer11->m_pParamMgr->GetVectorParameterRef( std::wstring( L"ViewerPositionWS" ) );
+	m_pViewerPosition->InitializeParameterData( &m_ViewerPosition);
 
 	// Create the material for use by the entities.
 
-	m_pMaterial = MaterialGeneratorDX11::GeneratePhong( *m_pRenderer11 );
+	m_pMaterial = MaterialGeneratorDX11::GenerateBumpMapping( *m_pRenderer11 );
 
+    m_DiffuseTexture = m_pRenderer11->LoadTexture( std::wstring( L"Hex.png" ) /*, &loadInfo*/ );
+    m_NormalMap = m_pRenderer11->LoadTexture( std::wstring( L"Hex_Normal.png" ) );
+
+    _ASSERT( m_DiffuseTexture->m_iResource != -1 );
+    _ASSERT( m_NormalMap->m_iResource != -1 );
+
+    // Set the texture parameters
+    m_pMaterial->Parameters.SetShaderResourceParameter( L"DiffuseMap", m_DiffuseTexture );
+	m_pMaterial->Parameters.SetShaderResourceParameter( L"NormalMap", m_NormalMap );
+
+    // Create a sampler state
+    D3D11_SAMPLER_DESC sampDesc;
+    sampDesc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
+    sampDesc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
+    sampDesc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
+    sampDesc.BorderColor[0] = sampDesc.BorderColor[1] = sampDesc.BorderColor[2] = sampDesc.BorderColor[3] = 0;
+    sampDesc.ComparisonFunc = D3D11_COMPARISON_ALWAYS;
+    sampDesc.Filter = D3D11_FILTER_ANISOTROPIC;
+    sampDesc.MaxAnisotropy = 16;
+    sampDesc.MaxLOD = D3D11_FLOAT32_MAX;
+    sampDesc.MinLOD = 0.0f;
+    sampDesc.MipLODBias = 0.0f;
+    int samplerState = m_pRenderer11->CreateSamplerState( &sampDesc );
+	m_pMaterial->Parameters.SetSamplerParameter( L"AnisoSampler", samplerState );
 
 	// Create the camera, and the render view that will produce an image of the 
 	// from the camera's point of view of the scene.
 
-
 	m_pCamera = new Camera();
 	m_pCamera->Spatial().SetRotation(Vector3f(0.607f, 0.0f, 0.0f));
-	m_pCamera->Spatial().SetTranslation(Vector3f(0.0f, 2.5f, -5.0f));
+	m_pCamera->Spatial().SetTranslation(m_ViewerPosition);
 	m_pRenderView = new ViewPerspective(*m_pRenderer11, m_RenderTarget, m_DepthTarget);
 	m_pRenderView->SetColorClearValue(Vector4f(0.6f, 0.6f, 0.6f, 0.6f));
 	m_pCamera->SetCameraView(m_pRenderView);
@@ -215,7 +242,7 @@ void App::Update()
 
 	Matrix3f rotation;
 	rotation.RotationY( m_pTimer->Elapsed() );
-	//m_pActor->GetNode()->Transform.Rotation() *= rotation;
+	m_pActor->GetNode()->Transform.Rotation() *= rotation;
 
 	// Update the scene, and then render all cameras within the scene.
 

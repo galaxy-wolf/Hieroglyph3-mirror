@@ -61,9 +61,14 @@ protected:
 
 	Vector4f				m_LightParams;
 	Vector4f				m_LightPosition;
+	Vector3f				m_ViewerPosition;
 
 	Camera*					m_pCamera;
 
 	VectorParameterDX11*	m_pLightColor;
 	VectorParameterDX11*	m_pLightPosition;
+	VectorParameterDX11*	m_pViewerPosition;
+
+    ResourcePtr             m_DiffuseTexture;
+    ResourcePtr             m_NormalMap;
 };

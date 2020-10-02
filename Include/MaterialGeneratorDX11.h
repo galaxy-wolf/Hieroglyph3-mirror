@@ -29,6 +29,7 @@ namespace Glyph3
 		static MaterialPtr GenerateSkinnedTextured( RendererDX11& Renderer );
 		static MaterialPtr GenerateSkinnedSolid( RendererDX11& Renderer );
 
+		static MaterialPtr GenerateBumpMapping( RendererDX11& Renderer );
 		static MaterialPtr GeneratePhong( RendererDX11& Renderer );
 		static MaterialPtr GenerateSolidColor( RendererDX11& Renderer );
 

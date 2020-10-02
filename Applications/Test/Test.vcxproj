@@ -23,6 +23,7 @@
     <ProjectGuid>{26CBFF43-0C2D-4880-A643-5D2B516A78EA}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>WaterSimulationI_Desktop</RootNamespace>
+    <ProjectName>BumpMapping</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
